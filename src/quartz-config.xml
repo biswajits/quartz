@@ -6,10 +6,14 @@
 	http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
 	version="1.8">
 
+<pre-processing-commands>
+    <delete-jobs-in-group>AGroupA</delete-jobs-in-group>
+    <delete-triggers-in-group>TRIGGER_GROUP</delete-triggers-in-group>
+</pre-processing-commands>
 	<schedule>
 		<job>
-			<name>AJob</name>
-			<group>AGroup</group>
+			<name>AJobA</name>
+			<group>AGroupA</group>
 			<description>Print a welcome message</description>
 			<job-class>com.test.quartz.SchedulerJob</job-class>
 		</job>
@@ -17,10 +21,11 @@
 		<trigger>
 			<cron>
 				<name>dummyTriggerName</name>
-				<job-name>AJob</job-name>
-				<job-group>AGroup</job-group>
+				<group>TRIGGER_GROUP</group>
+				<job-name>AJobA</job-name>
+				<job-group>AGroupA</job-group>
 				<!-- It will run every 5 seconds -->
-				<cron-expression>0 30 11 * * ?</cron-expression>
+				<cron-expression>0 * * * * ?</cron-expression>
 			</cron>
 		</trigger>
 	</schedule>
